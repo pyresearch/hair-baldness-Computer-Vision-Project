@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - Hair Baldness Computer Vision Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background: linear-gradient(90deg, #1f4037, #99f2c8);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1, footer p {
+            margin: 0;
+        }
+        main {
+            flex: 1;
+            padding: 40px 20px;
+        }
+        .results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .detected-classes {
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #e0e0e0;
+        }
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .image-pair {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .image-pair img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 2px solid #4CAF50;
+        }
+        .image-pair p {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 40px auto 0;
+            padding: 12px 0;
+            background-color: #008CBA;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #007B9E;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+        .social-links a {
+            margin: 0 8px;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hair Baldness Computer Vision Project</h1>
+    </header>
+    <main>
+        <div class="results-container">
+            <div class="detected-classes">
+                <strong>Detected Classes:</strong> {{ detected_classes | join(', ') }}
+            </div>
+            <div class="images-grid">
+                {% for pair in result_paths %}
+                <div class="image-pair">
+                    <img src="{{ url_for('static', filename=pair.input.split('static/')[-1]) }}" alt="Original Image">
+                    <p>Original</p>
+                </div>
+                <div class="image-pair">
+                    <img src="{{ url_for('static', filename=pair.output.split('static/')[-1]) }}" alt="Annotated Image">
+                    <p>Result</p>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="{{ url_for('index') }}" class="back-button">Analyze More Images</a>
+        </div>
+    </main>
+    <footer>
+        <p>Phone: +966539723031</p>
+        <div class="social-links">
+            <a href="https://www.youtube.com/channel/UCyB_7yHs7y8u9rONDSXgkCg/join" target="_blank">YouTube</a>
+            <a href="https://www.facebook.com/Pyresearch" target="_blank">Facebook</a>
+            <a href="https://www.youtube.com/c/Pyresearch" target="_blank">YouTube Channel</a>
+            <a href="https://medium.com/@Pyresearch" target="_blank">Medium</a>
+            <a href="https://www.instagram.com/pyresearch/" target="_blank">Instagram</a>
+            <a href="https://www.linkedin.com/company/Pyresearch" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com/Noorkhokhar10" target="_blank">Twitter</a>
+            <a href="https://discord.com/invite/BHxGBn98" target="_blank">Discord</a>
+            <a href="https://github.com/Pyresearch" target="_blank">GitHub</a>
+            <a href="https://www.quora.com/profile/Pyresearch" target="_blank">Quora</a>
+            <a href="https://github.com/noorkhokhar99" target="_blank">Personal GitHub</a>
+        </div>
+    </footer>
+</body>
+</html>
